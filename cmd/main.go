@@ -6,7 +6,6 @@ import (
 	"net/http"
 	"os"
 	"shop/internal/config"
-	"shop/internal/domains"
 	"shop/internal/repository/postgres"
 )
 
@@ -16,20 +15,7 @@ func main() {
 
 	repository, err := postgres.New(cfg.DataBase)
 	exitOnError(err)
-	err = repository.AddCategory(domains.ProductCategory{Name: "flowers"})
-	exitOnError(err)
-	err = repository.AddCategory(domains.ProductCategory{Name: "phone"})
-	exitOnError(err)
-	err = repository.AddCategory(domains.ProductCategory{Name: "aboba"})
-	exitOnError(err)
-	c, err := repository.GetAllCategories()
-	exitOnError(err)
-	fmt.Printf("c: %v\n", c)
-	c1, err := repository.GetCategoryByID(5)
-	exitOnError(err)
-	fmt.Println(c1)
-	err = repository.AddProduct(domains.Product{Name: "aboba", Description: "a", Price: 156.45, Quantity: 256, CategoryID: 1, ImagePath: "aboba.txt"})
-	exitOnError(err)
+	_ = repository
 
 	http.HandleFunc("GET /", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("Hello"))
