@@ -36,7 +36,9 @@ CREATE TABLE IF NOT EXISTS orders(
 	user_id INTEGER REFERENCES users(id) ON DELETE SET NULL,
 	date DATE NOT NULL,
 	price DECIMAL(10,2) NOT NULL,
-	status VARCHAR(20) CHECK (status IN ('pending', 'paid', 'canceled')) NOT NULL
+	status VARCHAR(20) CHECK (status IN ('pending', 'paid', 'canceled')) NOT NULL,
+	pickup_method VARCHAR(20) CHECK (pickup_method IN ('delivery', 'pickup')) NOT NULL,
+	delivery_address VARCHAR
 );
 
 CREATE TABLE IF NOT EXISTS order_items(
