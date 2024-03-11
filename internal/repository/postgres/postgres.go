@@ -5,7 +5,9 @@ import (
 	"fmt"
 	"shop/internal/config"
 	"shop/internal/repository/postgres/categoryrepo"
+	"shop/internal/repository/postgres/oitemrepo"
 	"shop/internal/repository/postgres/orderrepo"
+	"shop/internal/repository/postgres/paymentrepo"
 	"shop/internal/repository/postgres/productrepo"
 	"shop/internal/repository/postgres/userrepo"
 
@@ -17,6 +19,8 @@ type Repository struct {
 	*productrepo.ProductRepository
 	*userrepo.UserRepository
 	*orderrepo.OrderRepository
+	*oitemrepo.OrderItemRepository
+	*paymentrepo.PaymentRepository
 }
 
 func New(cfg config.DataBase) (*Repository, error) {
@@ -31,5 +35,7 @@ func New(cfg config.DataBase) (*Repository, error) {
 		productrepo.New(db),
 		userrepo.New(db),
 		orderrepo.New(db),
+		oitemrepo.New(db),
+		paymentrepo.New(db),
 	}, nil
 }
