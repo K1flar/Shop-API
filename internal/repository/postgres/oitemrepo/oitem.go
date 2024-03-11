@@ -49,7 +49,7 @@ func (r *OrderItemRepository) GetOrderItemsByOrderID(orderID uint32) ([]*domains
 	var oitems []*domains.OrderItem
 	for res.Next() {
 		oitem := &domains.OrderItem{}
-		err := res.Scan(oitem.OrderID, oitem.ProductID, oitem.Quantity, oitem.ProductPrice)
+		err := res.Scan(&oitem.OrderID, &oitem.ProductID, &oitem.Quantity, &oitem.ProductPrice)
 		if err != nil {
 			return nil, fmt.Errorf("%s: %w", fn, err)
 		}

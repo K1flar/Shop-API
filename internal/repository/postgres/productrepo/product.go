@@ -181,7 +181,7 @@ func (r *ProductRepository) UpdateProductPrice(id uint32, price float64) error {
 	return nil
 }
 
-func (r *ProductRepository) UpdateProductQuantity(id uint32, quantity float64) error {
+func (r *ProductRepository) UpdateProductQuantity(id uint32, quantity int) error {
 	fn := "productRepository.UpdateProductQuantity"
 	if err := r.updateField(id, "quantity", quantity); err != nil {
 		return fmt.Errorf("%s: %w", fn, err)
@@ -189,7 +189,7 @@ func (r *ProductRepository) UpdateProductQuantity(id uint32, quantity float64) e
 	return nil
 }
 
-func (r *ProductRepository) AddProductQuantity(id uint32, quantity float64) error {
+func (r *ProductRepository) AddProductQuantity(id uint32, quantity int) error {
 	fn := "productRepository.AddProductQuantity"
 
 	stmt := `
